@@ -1,4 +1,4 @@
-package com.stubhub.gcp.gsbff.model;
+package com.stubhub.gcp.csbff.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 

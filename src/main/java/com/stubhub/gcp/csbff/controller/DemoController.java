@@ -1,6 +1,6 @@
 package com.stubhub.gcp.csbff.controller;
 
-import com.stubhub.gcp.gsbff.model.ResultObject;
+import com.stubhub.gcp.csbff.model.ResultObject;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
