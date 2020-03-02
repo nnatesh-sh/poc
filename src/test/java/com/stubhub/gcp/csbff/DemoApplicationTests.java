@@ -1,4 +1,4 @@
-package com.stubhub.gcp.gsbff;
+package com.stubhub.gcp.csbff;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
