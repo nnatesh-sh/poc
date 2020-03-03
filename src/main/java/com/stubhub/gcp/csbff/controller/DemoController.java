@@ -12,6 +12,6 @@ public class DemoController {
 
     @RequestMapping(method = RequestMethod.GET, path = "/", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResultObject getResultObject() {
-        return new ResultObject("Hello world from JSON - csapp");
+        return new ResultObject("Hello world from JSON");
     }
 }
