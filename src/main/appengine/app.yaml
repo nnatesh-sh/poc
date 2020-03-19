@@ -1,6 +1,6 @@
 runtime: java11
 instance_class: F4
-service: bfftest
+service: firebase-poc
 automatic_scaling:
   min_idle_instances: 1
   max_idle_instances: 4
