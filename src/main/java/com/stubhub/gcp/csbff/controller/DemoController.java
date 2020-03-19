@@ -1,63 +1,17 @@
 package com.stubhub.gcp.csbff.controller;
 
-import com.google.api.core.ApiFuture;
-import com.google.cloud.firestore.*;
-import com.stubhub.gcp.csbff.model.RecenltyViewed;
 import com.stubhub.gcp.csbff.model.ResultObject;
 import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.*;
-
-import java.sql.Timestamp;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.concurrent.ExecutionException;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
 
 @RestController
+@RequestMapping(path = "/", produces = MediaType.APPLICATION_JSON_VALUE)
 public class DemoController {
 
-    Firestore db;
-
     @RequestMapping(method = RequestMethod.GET, path = "/", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResultObject createFireBaseInstance() {
-        FirestoreOptions firestoreOptions =
-                FirestoreOptions.getDefaultInstance().toBuilder()
-                        .setProjectId("native-backend-dev-27567")
-                        .build();
-        Firestore db = firestoreOptions.getService();
-        this.db = db;
-        return new ResultObject("Firestore Created");
+    public ResultObject getResultObject() {
+        return new ResultObject("Hello world from JSON");
     }
-
-    @RequestMapping(method = RequestMethod.POST, path = "/rve", consumes = MediaType.APPLICATION_JSON_VALUE,  produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResultObject witeToFireBase(@RequestBody RecenltyViewed recenltyViewed){
-
-        DocumentReference docRef = db.collection("rve").document(recenltyViewed.getUserId());
-        Map<String, Object> docData = new HashMap<>();
-        docData.put("userId", recenltyViewed.getUserId());
-        docData.put("eventId", recenltyViewed.getEventId());
-        docData.put("timestamp", recenltyViewed.getTimestamp());
-        ApiFuture<WriteResult> result = db.collection("rve").document(recenltyViewed.getUserId()).set(docData);
-
-
-        return new ResultObject(recenltyViewed.getUserId() + " " + recenltyViewed.getEventId() );
-
-    }
-
-    @RequestMapping(method= RequestMethod.GET, value="/{userId}" , produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResultObject readFromFireBase(@PathVariable("userId") String userId) throws ExecutionException, InterruptedException {
-        DocumentReference docRef = db.collection("rve").document(userId);
-        ApiFuture<DocumentSnapshot> future = docRef.get();
-
-        DocumentSnapshot document = future.get();
-        RecenltyViewed recenltyViewed = null;
-        if (document.exists()) {
-            recenltyViewed = document.toObject(RecenltyViewed.class);
-        }
-       return new ResultObject(recenltyViewed.toString());
-
-    }
-
-
-
-
 }
