@@ -30,4 +30,12 @@ public class RecentlyViewed {
         this.timestamp = timestamp;
     }
 
+    @Override
+    public String toString() {
+        return "RecentlyViewed{" +
+                "userId='" + userId + '\'' +
+                ", eventId='" + eventId + '\'' +
+                ", timestamp='" + timestamp + '\'' +
+                '}';
+    }
 }

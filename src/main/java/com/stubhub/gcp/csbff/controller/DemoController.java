@@ -17,7 +17,7 @@ public class DemoController {
 
     Firestore db;
 
-    @RequestMapping(method = RequestMethod.GET, path = "/", produces = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(method = RequestMethod.GET, path = "/create", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResultObject createFireBaseInstance() {
         FirestoreOptions firestoreOptions =
                 FirestoreOptions.getDefaultInstance().toBuilder()
@@ -39,7 +39,7 @@ public class DemoController {
         ApiFuture<WriteResult> result = db.collection("rve").document(recenltyViewed.getUserId()).set(docData);
 
 
-        return new ResultObject(recenltyViewed.getUserId() + " " + recenltyViewed.getEventId() );
+        return new ResultObject(result.toString());
 
     }
 
